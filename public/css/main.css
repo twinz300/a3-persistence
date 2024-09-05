@@ -1,4 +1,39 @@
+
+h1{
+  font-size: xx-large;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align:center;
+}
+
+h2{
+  font-size: large;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color:indianred
+}
+
+h3{
+  font-size: large;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color:blue;
+}
+
+
 body {
-  background:black;
-  color:white;
+  background:yellow;
+  color:black;
+}
+
+#dataDisplay{
+  display: grid;
+  gap: 30px;
+ padding: 20px;
+}
+
+
+.grid-item{
+  background-color: aqua;
+  padding: 20px;
+  border:2px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: larger;
 }

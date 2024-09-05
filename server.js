@@ -7,11 +7,8 @@ const http = require( 'http' ),
       mime = require( 'mime' ),
       dir  = 'public/',
       port = 3000
-
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+// everything above is perfect!
+const appdata = [ //appdata should have examples of what i expect to EVENTUALLY be entered
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -20,6 +17,13 @@ const server = http.createServer( function( request,response ) {
   }else if( request.method === 'POST' ){
     handlePost( request, response ) 
   }
+  else if( request.method === 'DELETE' ){
+    handleDelete( request, response ) 
+  }
+  else if (request.method === 'PUT'){
+    handlePut (request, response)
+  }
+
 })
 
 const handleGet = function( request, response ) {
@@ -27,7 +31,11 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }else if(request.url === '/data'){
+    response.writeHeader( 200, "OK", {'Content-Type': 'application/json' }) 
+    response.end(JSON.stringify(appdata));
+  }
+  else{
     sendFile( response, filename )
   }
 }
@@ -40,15 +48,100 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    const newSubmission = ( JSON.parse( dataString ) )
+
+    //CHECK PROP NAMES
+    const subject = newSubmission.yoursubject
+    const day = newSubmission.yourday
+    const dayStudyHours = parseFloat(newSubmission.yourdaystudyhours)
 
     // ... do something with the data here!!!
+    // I've decided to add the new submission to the previously established "appdata" model
+    //adding the "derived field" here
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end('test')
+    const totalWeekHours = appdata.reduce((sum, note) => sum + note.dayStudyHours, 0) + dayStudyHours
+    
+    appdata.push({
+      'subject': subject,
+      'day': day,
+      'dayStudyHours': dayStudyHours,
+      'totalWeekHours': totalWeekHours,
+    })
+
+    response.writeHeader( 200, "OK", {'Content-Type': 'application/json' }) 
+    response.end(JSON.stringify(appdata))
   })
 }
 
+const handleDelete = function( request, response ) {
+  let dataString = ''
+
+  request.on( 'data', function( data ) {
+      dataString += data 
+  })
+
+request.on( 'end', function() {
+const deleteEntry = JSON.parse(dataString)
+const index = appdata.findIndex(entry=>
+  entry.subject === deleteEntry.yoursubject &&
+  entry.day === deleteEntry.yourday &&
+  entry.dayStudyHours === parseFloat(deleteEntry.yourdaystudyhours) 
+)
+
+if (index !== -1){
+  appdata.splice(index, 1)
+
+  const totalWeekHours = appdata.reduce((sum, note) => sum + note.dayStudyHours, 0)
+  appdata.forEach(note => note.totalWeekHours = totalWeekHours)
+
+  response.writeHeader( 200, "OK", {'Content-Type': 'application/json' }) 
+    response.end(JSON.stringify(appdata))
+}
+
+else{
+  response.writeHeader(404, "Error present", {'Content-Type': 'application/json'})
+  response.end(JSON.stringify(appdata))
+}
+
+})
+}
+//----------------------------------------------------handlePut below
+const handlePut = function( request, response ) {
+  let dataString = ''
+
+  request.on( 'data', function( data ) {
+      dataString += data 
+  })
+
+request.on( 'end', function() {
+const modifyEntry = JSON.parse(dataString)
+const {yoursubject, yourday, yourdaystudyhours, newsubject, newday, newdaystudyhours} = modifyEntry //fix
+const index = appdata.findIndex(entry=>
+  entry.subject === yoursubject &&
+  entry.day === yourday &&
+  entry.dayStudyHours === parseFloat(yourdaystudyhours) 
+)
+
+if (index !== -1){
+  if (newsubject) appdata[index].subject = newsubject
+  if (newday) appdata[index].day = newday
+  if (newdaystudyhours) appdata[index].dayStudyHours = parseFloat(newdaystudyhours)
+
+  const totalWeekHours = appdata.reduce((sum, note) => sum + note.dayStudyHours, 0)
+  appdata.forEach(note => note.totalWeekHours = totalWeekHours)
+
+  response.writeHeader( 200, "OK", {'Content-Type': 'application/json' }) 
+    response.end(JSON.stringify(appdata))
+}
+
+else{
+  response.writeHeader(404, "Error present", {'Content-Type': 'application/json'})
+  response.end(JSON.stringify(appdata))
+}
+
+})
+}
+//------------------------------------------------------------------------------handlePut above
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
 

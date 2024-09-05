@@ -1,4 +1,34 @@
 // FRONT-END (CLIENT) JAVASCRIPT HERE
+//-------------------------------------------- display below
+const renderData = function (data){
+  const displayArea = document.querySelector('#dataDisplay')
+  displayArea.innerHTML = ''
+
+
+data.forEach(entry => {
+
+const entryDiv = document.createElement('div')
+entryDiv.classList.add('grid-item') //this the new one
+entryDiv.innerHTML = 
+`<div> Subject: ${entry.subject},</div> <div> Day: ${entry.day},</div> <div> Hours: ${entry.dayStudyHours},</div> <div> Total Week Hours: ${entry.totalWeekHours}</div>`
+displayArea.appendChild(entryDiv)
+
+
+})
+
+
+}
+
+//-------------------------------------------------------------------display above
+
+
+
+
+
+
+
+
+
 
 const submit = async function( event ) {
   // stop form submission from trying to load
@@ -7,21 +37,89 @@ const submit = async function( event ) {
   // remains to this day
   event.preventDefault()
   
-  const input = document.querySelector( '#yourname' ),
-        json = { yourname: input.value },
-        body = JSON.stringify( json )
+  const subjectChosen = document.querySelector ( '#yoursubject' ).value
+  const dayChosen = document.querySelector ( '#yourday' ).value
+  const daystudyHoursChosen =  document.querySelector ( '#daystudyhours' ).value
+
+
+
 
   const response = await fetch( '/submit', {
     method:'POST',
-    body 
+    headers: {'Content-Type': 'application/json' },
+    body: JSON.stringify({ 
+      yoursubject: subjectChosen, 
+      yourday: dayChosen,
+      yourdaystudyhours: daystudyHoursChosen
+    
+    })
   })
 
-  const text = await response.text()
-
-  console.log( 'text:', text )
+  const data = await response.json()
+  console.log( 'Submit response:', data)
+  renderData(data)
 }
+
+const deleteSubmission = async function (event){
+  event.preventDefault()
+
+  const subjectChosen = document.querySelector ( '#yoursubject' ).value
+  const dayChosen = document.querySelector ( '#yourday' ).value
+  const daystudyHoursChosen =  document.querySelector ( '#daystudyhours' ).value
+       
+  const response = await fetch( '/delete', {
+    method:'DELETE',
+    headers: {'Content-Type': 'application/json' },
+    body: JSON.stringify({ 
+      yoursubject: subjectChosen, 
+      yourday: dayChosen,
+      yourdaystudyhours: daystudyHoursChosen
+    
+    })
+  })
+  const data = await response.json()
+  console.log( 'Delete response:', data)
+  renderData(data)
+  
+}
+
+//--------------------MOD below
+const modifySubmission = async function (event){
+  event.preventDefault()
+
+  const subjectChosen = document.querySelector ( '#modsubject' ).value
+  const dayChosen = document.querySelector ( '#modday' ).value
+  const dayStudyHoursChosen =  document.querySelector ( '#moddaystudyhours' ).value
+
+  const newSubjectChosen = document.querySelector ( '#newsubject' ).value
+  const newDayChosen = document.querySelector ( '#newday' ).value
+  const newDayStudyHoursChosen =  document.querySelector ( '#newdaystudyhours' ).value
+       
+  const response = await fetch( '/modify', {
+    method:'PUT',
+    headers: {'Content-Type': 'application/json' },
+    body: JSON.stringify({ 
+      yoursubject: subjectChosen, 
+     yourday: dayChosen,
+      yourdaystudyhours: dayStudyHoursChosen,
+      newsubject: newSubjectChosen,
+      newday: newDayChosen,
+      newdaystudyhours: newDayStudyHoursChosen
+
+    
+    })
+  })
+  const data = await response.json()
+  console.log( 'Modify response:', data)
+  renderData(data)
+  
+}
+//--------------------MOD above
+
 
 window.onload = function() {
-   const button = document.querySelector("button");
-  button.onclick = submit;
-}
+   document.querySelector('#submissionbutton').onclick=submit
+   document.querySelector('#deletebutton').onclick=deleteSubmission
+   document.querySelector('#modifybutton').onclick=modifySubmission
+
+  fetchData()}

@@ -1,100 +1,82 @@
-Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
-===
+Winston Lewis: 
+This project shows ...
 
-Due: September 9th, by 11:59 AM.
+## Study Scheduler
 
-This assignment will introduce you to creating a prototype two-tiered web application. 
-Your application will include the use of HTML, CSS, JavaScript, and Node.js functionality, with active communication between the client and the server.
+My application allows users to schedule study sessions for the upcoming week. They can enter the subject they want to study, the day they want to study on, and the amount of hours they plan to study for. To submit, the user can click the “Submit” button once all three boxes have been filled with valid inputs. Once the user submits the relevant credentials, all submissions are immediately displayed to the user. The user can delete and modify prior submissions as well. To modify a submission, the user must enter the credentials of the submission they want to change across the middle set of boxes (exactly as originally typed), the changes they want to see across the last row of boxes, and click “Modify” when finished. To delete prior submissions, the user must enter the credentials of the submission they want to remove across the first row of boxes (exactly as originally typed), and click “Delete” when finished. There is a derived field that is also displayed, indicating the total amount of hours the user can expect to study during the specified week. The derived field adjusts when submissions are added, modified, or deleted. I used a CSS grid for positioning (see note below for more details).
 
-Baseline Requirements
----
 
-There are a range of application areas and possibilities that meet these baseline requirements. 
-Try to make your application do something useful! A todo list, storing / retrieving high scores for a very simple game... have a little fun with it.
 
-Your application is required to implement the following functionalities:
 
-- a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
-- a `Results` functionality which shows the entire dataset residing in the server's memory
-- a `Form/Entry` functionality which allows a user to add or delete data items residing in the server's memory
-- a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
-- the `Derived field` for a new row of data must be computed based on fields already existing in the row. 
-For example, a `todo` dataset with `task`, `priority`, and `creation_date` may generate a new field `deadline` by looking at `creation_date` and `priority`
-
-Your application is required to demonstrate the use of the following concepts:
-
-HTML:
-- One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application
-- A results page displaying all data currently available on the server. You will most likely use a `<table>` tag for this, but `<ul>` or `<ol>` could also work and might be simpler to work with. Alternatively, you can create a single-page app (see Technical Acheivements) but this is not a requirement.
-- All pages should [validate](https://validator.w3.org)
-- If your app contains multple pages, they should all be accessible from the homepage (index.html)
-
-CSS:
-- CSS styling of the primary visual elements in the application
-- Various CSS Selector functionality must be demonstrated:
-    - Element selectors
-    - ID selectors
-    - Class selectors
-- CSS positioning and styling of the primary visual elements in the application:
-    - Use of either a CSS grid or flexbox for layout
-    - Rules defining fonts for all text used; be deliberate! Be sure to use a web safe font or a font from a web service like [Google Fonts](http://fonts.google.com/)
-
-- CSS defined in a maintainable, readable form, in external stylesheets 
-
-JavaScript:
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
-
-Node.js:
-- An HTTP Server that delivers all necessary files and data for the application, and also creates the required `Derived Fields` in your data. 
-A starting point is provided in this repository.
-
-Deliverables
----
-
-Do the following to complete this assignment and acheive a base grade of 85%:
-
-1. Fork the starting project code. This repo contains some starter code that may be used or discarded as needed.
-2. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page, it displays correctly.
-4. Deploy your project to Glitch, and fill in the appropriate fields in your package.json file.
-5. Ensure that your project has the proper naming scheme `a2-yourGithubUsername` so we can find it.
-6. Modify the README to the specifications below, and delete all of the instructions originally found in this README.
-7. Create and submit a Pull Request to the original repo. Label the pull request as follows: a2-gitusername-firstname-lastname
-
-Acheivements
----
-
-Below are suggested technical and design achievements. You can use these to help boost your grade up to an A and customize the assignment to your personal interests. These are recommended acheivements, but feel free to create/implement your own... just make sure you thoroughly describe what you did in your README and why it was challenging. ALL ACHIEVEMENTS MUST BE DESCRIBED IN YOUR README IN ORDER TO GET CREDIT FOR THEM. Remember, the highest grade you can get on any individual assignment is a 100%.
-
-*Technical*
-- (5 points) Create a single-page app that both provides a form for users to submit data and always shows the current state of the server-side data. To put it another way, when the user submits data, the server should respond sending back the updated data (including the derived field calculated on the server) and the client should then update its data display.
-
-- (5 points) In addition to a form enabling adding and deleting data on the server, also add the ability to modify existing data.
-
-*Design/UX*
-- (5 points per person, with a max of 10 points) Test your user interface with other students in the class. Define a specific task for them to complete (ideally something short that takes <10 minutes), and then use the [think-aloud protocol](https://en.wikipedia.org/wiki/Think_aloud_protocol) to obtain feedback on your design (talk-aloud is also fine). Important considerations when designing your study:
-
-1. Make sure you start the study by clearly stating the task that you expect your user to accomplish.
-2. You shouldn't provide any verbal instructions on how to use your interface / accomplish the task you give them. Make sure that your interface is clear enough that users can figure it out without any instruction, or provide text instructions from within the interface itself. 
-3. If users get stuck to the point where they give up, you can then provde instruction so that the study can continue, but make sure to discuss this in your README. You won't lose any points for this... all feedback is good feedback!
-
-You'll need to use sometype of collaborative software that will enable you both to see the test subject's screen and listen to their voice as they describe their thoughts, or conduct the studies in person. After completing each study, briefly (one to two sentences for each question) address the following in your README:
-
-1. Provide the last name of each student you conduct the evaluation with.
-2. What problems did the user have with your design?
-3. What comments did they make that surprised you?
-4. What would you change about the interface based on their feedback?
-
-*You do not need to actually make changes based on their feedback*. This acheivement is designed to help gain experience testing user interfaces. If you run two user studies, you should answer two sets of questions. 
-
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
-
-## Your Web Application Title
-Include a very brief summary of your project here. Be sure to include the CSS positioning technique you used, and any required instructions to use your application.
+**NOTE: Although I used a CSS grid for positioning, I did not use it for all elements. Instead, I used a CSS grid to format the displaying of the user’s submissions. I decided to design my application this way because I thought that it would make my webpage look nicer. Also, Prof. Charlie Roberts himself said that this was acceptable, and that I can receive full credit for doing so.** 
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
 
-### Design/Evaluation Achievements
-- **Design Achievement 1**: 
+**Created a single-page app:** 
+
+My application displays the current and previous submissions that came from the user (i.e. subject, day of the week, anticipated study hours). Users also have the ability to delete their submissions. The derived field is the amount of hours expected to be studied throughout the whole week. This field is changed each time an entry is added or deleted. This was challenging because I had to find a way to make sure all submissions were displayed, not just the most recent submission. I also implemented all of my forms in a way that they would be shown on one page.
+
+
+**Added the ability to modify existing data:**
+
+
+With my application, users can modify existing data by typing the credentials of the submission they want to change in 3 boxes, typing the credentials of what they would like the submission changed to in a different set of boxes, and clicking the “Modify” button. This was challenging because I had to find a way to make sure the derived field changed accordingly, I had to make a separate request method for modifications, and I had to ensure all of my elements were properly capitalized. I also realized after conducting a test that this feature was dysfunctional due to the fact that I did not have unique ids for some of my elements. I corrected this by providing some of the ids that were reused with completely new ids.
+
+
+
+## Design/UX Achievements
+
+**Tested my interface (2 People):**
+
+
+To thoroughly test my application, I asked my participants to: <br>
+1. Schedule a study session. <br>
+2. Schedule a second study session with different credentials. <br>
+3. Modify one of the prior submissions. <br>
+4. Delete one of the prior submissions. <br>
+
+
+What was difficult about this process is that I was generally not allowed to give input about how to do each action I requested. I had to watch and hope that the users would be able to understand how to accomplish the goals based on the way I designed the webpage.
+
+**Trial #1 (Crouse)**
+
+Provide the last name of each student you conduct the evaluation with.
+
+**The last name of the student involved in this evaluation is Crouse.**
+
+
+What problems did the user have with your design?
+
+**The user was unable to successfully modify a submission due to faulty coding.**
+
+
+What comments did they make that surprised you?
+
+**The user mentioned that he was bothered by the background color (yellow).**
+
+
+What would you change about the interface based on their feedback?
+
+**Based on the user’s feedback, I would change the coding regarding the “Modify” feature. (I ended up fixing this feature, and I made sure that it worked).**
+
+
+**Trial #2 (Soofi)**
+
+Provide the last name of each student you conduct the evaluation with.
+
+**The last name of the student involved in this evaluation is Soofi.**
+
+
+What problems did the user have with your design?
+
+**The user noticed that negative study hours can be submitted, which should not be possible.**
+
+
+What comments did they make that surprised you?
+
+**The user did not make any surprising comments.**
+
+
+What would you change about the interface based on their feedback?
+
+**Based on the user’s feedback, I would remove the option to submit negative study hours.**

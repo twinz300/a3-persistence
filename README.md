@@ -1,5 +1,5 @@
-Winston Lewis: 
-This project shows ...
+Winston Lewis: <br>
+This project shows ... <br>
 
 ## Study Scheduler
 

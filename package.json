@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-twinz300",
+  "version": "2.6.0",
+  "description": "A2 Webware webpage that allows people to schedule study times.",
+  "author": "twinz300. Winston Lewis",
   "scripts": {
     "start": "node server.js"
   },

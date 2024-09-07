@@ -41,10 +41,12 @@ const submit = async function( event ) {
   const dayChosen = document.querySelector ( '#yourday' ).value
   const daystudyHoursChosen =  document.querySelector ( '#daystudyhours' ).value
 
+ 
 
-
-
-  const response = await fetch( '/submit', {
+  if (subjectChosen != "input subject here" && dayChosen != "input day here" && (daystudyHoursChosen > 0 && daystudyHoursChosen <= 24)) {
+  
+  
+    const response = await fetch( '/submit', {
     method:'POST',
     headers: {'Content-Type': 'application/json' },
     body: JSON.stringify({ 
@@ -59,7 +61,7 @@ const submit = async function( event ) {
   console.log( 'Submit response:', data)
   renderData(data)
 }
-
+}
 const deleteSubmission = async function (event){
   event.preventDefault()
 
@@ -94,7 +96,10 @@ const modifySubmission = async function (event){
   const newSubjectChosen = document.querySelector ( '#newsubject' ).value
   const newDayChosen = document.querySelector ( '#newday' ).value
   const newDayStudyHoursChosen =  document.querySelector ( '#newdaystudyhours' ).value
+
        
+
+      if (newSubjectChosen != "input new subject here" && newDayChosen != "input new day here" && (newDayStudyHoursChosen > 0 && newDayStudyHoursChosen <= 24)) {
   const response = await fetch( '/modify', {
     method:'PUT',
     headers: {'Content-Type': 'application/json' },
@@ -112,7 +117,7 @@ const modifySubmission = async function (event){
   const data = await response.json()
   console.log( 'Modify response:', data)
   renderData(data)
-  
+}
 }
 //--------------------MOD above
 

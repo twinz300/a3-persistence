@@ -79,10 +79,12 @@ const deleteSubmission = async function (event){
     
     })
   })
-  const data = await response.json()
-  console.log( 'Delete response:', data)
-  renderData(data)
+
+   const data = await response.json()
+   console.log( 'Delete response:', data)
+   renderData(data)
   
+ 
 }
 
 //--------------------MOD below
@@ -118,13 +120,20 @@ const modifySubmission = async function (event){
   console.log( 'Modify response:', data)
   renderData(data)
 }
+
 }
 //--------------------MOD above
 
-
+const getData = async () => {
+ const response = await fetch('/docs', {method: 'GET'})
+ const data = await response.json()
+ console.log('Fetched data on page load:', data); //FIX EDIT ...........................
+ renderData(data)
+}
 window.onload = function() {
    document.querySelector('#submissionbutton').onclick=submit
    document.querySelector('#deletebutton').onclick=deleteSubmission
    document.querySelector('#modifybutton').onclick=modifySubmission
-
-  fetchData()}
+   getData(); //EXAMINE LIL FOE. this the realest
+ // fetchData()                                           //REVERT???
+}

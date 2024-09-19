@@ -1,3 +1,9 @@
+Note: I have essentially completed Assignment 3 for WEBWare. Unfortunately, when I try to import my project to Glitch.com, it does not work. When I run my program locally, however, the program works perfectly. I was wondering if there was another way I could get my work submitted/graded because it's done, but it is unable to be uploaded. I even worked with Parker (TA) for over an hour, and he is unsure of what to do as well. Please let me know what to do when you can, as I really want to resolve this issue.
+
+Thank you,
+
+Winston
+
 ## Study Scheduler
 
 Glitch link: http://a3-twinz300.glitch.me

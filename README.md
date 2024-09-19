@@ -1,4 +1,4 @@
-Note: I have essentially completed Assignment 3 for WEBWare. Unfortunately, when I try to import my project to Glitch.com, it does not work. When I run my program locally, however, the program works perfectly. I was wondering if there was another way I could get my work submitted/graded because it's done, but it is unable to be uploaded. I even worked with Parker (TA) for over an hour, and he is unsure of what to do as well. Please let me know what to do when you can, as I really want to resolve this issue.
+Note: I have essentially completed Assignment 3 for WEBWare. It now works on glitch (it did not before). I am unable to do a pull request, so this is the best I can manage.
 
 Thank you,
 

@@ -1,49 +1,34 @@
 <!doctype html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
-    <script src="js/main.js"></script>
-  <link rel="stylesheet" href="css/main.css">
-    
-    <!-- get rid of favicon error -->
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <meta name="description" content="This is the Study Scheduler's login page. Please enter your username, password, then submit."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+
+
   </head>
-  
   <body>
-    <h1>
-      Welcome to the... STUDY SCHEDULER!
-    </h1>
-  
-    <h2>
-    Enter the subject you want to study for, the day you plan to study on, and the amount of time you plan to study for in the first row of boxes. 
-    Click "Submit" when you have filled all 3 boxes. 
-    <br> If you want to delete submissions, type the credentials of the entry you want to delete EXACTLY as seen in the first row of boxes. Click "Delete" when finished.
-    </h2>
-    <form id = "schedulerform">
-      <input type="text" id="yoursubject" value="input subject here">
-      <input type="text" id="yourday" value="input day here">
-      <input type="text" id="daystudyhours" value="input anticipated study hours here">
-      <button type = "button" id = "submissionbutton">Submit</button> 
-      <button type = "button" id = "deletebutton">Delete</button>
+    <title>Study Scheduler Login Page</title>
+    <h1>Login page.</h1>
+    <h2>Enter your username in the top box & password in the lower box. Click submit when ready.</h2>
+    <form action="/login" method="POST">
+      <label>Username: <input type="text" name="username"></label>
+      <br>
+      <br>
+      <label>Password: <input type="password" name="password"></label>
+      <input id="submitlogin" type="submit">
     </form>
-    <form id = "modifyform">
-      <h3>Modify an entry (type the credentials of the entry you want to modify EXACTLY as seen in the row below this text.)
-        <br> Type the credentials of the modification you want in the final row. Click "Modify" when ready.
-      </h3>
-      <input type="text" id="modsubject" value="input subject here">
-      <input type="text" id="modday" value="input day here">
-      <input type="text" id="moddaystudyhours" value="input anticipated study hours here">
-<br> 
-      <input type="text" id="newsubject" value="input new subject here">
-      <input type="text" id="newday" value="input new day here">
-      <input type="text" id="newdaystudyhours" value="input new anticipated study hours here">
-      <button type = "button" id = "modifybutton">Modify</button> 
-      
-    </form>
-
-    <div id = "dataDisplay" class = grid-container></div>
-    
-
+    <script>
+      window.onload = function(){
+        const parameters = new URLSearchParams(window.location.search)
+        const errorNotification = parameters.get('error')
+        if (errorNotification){
+          document.getElementById('error-message').innerText = errorNotification;
+        }
+      }
+    </script>
+    <p id="error-message"></p>
   </body>
-</html>
+</html> 

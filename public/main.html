@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8">
+    <meta name="description" content="This is the Study Scheduler's official submission page. Please enter your credentials in the fields provided."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script src="js/main.js"></script>
+   <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css"> 
+    
+    <!-- get rid of favicon error -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    
+
+
+  </head>
+  <!--when the script was here, it worked perfectly-->
+ 
+
+
+  <body>
+    <h1>
+      Welcome to the... STUDY SCHEDULER!
+    </h1>
+  
+    <h2>
+    Enter the subject you want to study for, the day you plan to study on, and the amount of time you plan to study for in the column of boxes directly below. 
+    Click "Submit" when you have filled all 3 boxes. 
+    <br> If you want to delete submissions, type the credentials of the entry you want to delete EXACTLY as seen in the column of boxes directly below. 
+    <br> Click "Delete" when finished.
+    </h2>
+    <form id = "schedulerform">
+      <label for="yoursubject">Subject</label><input type="text" id="yoursubject" value="input subject here">
+      <label for="yourday">Day</label><input type="text" id="yourday" value="input day here">
+      <label for="daystudyhours">Hours</label><input type="text" id="daystudyhours" value="input anticipated study hours here">
+      <button type = "button" id = "submissionbutton">Submit</button> 
+      <button type = "button" id = "deletebutton">Delete</button>
+    </form>
+    <form id = "modifyform">
+      <h3>Modify an entry (type the credentials of the entry you want to modify EXACTLY as seen in the first three boxes below this text.)
+        <br> Type the credentials of the modification you want in the final set of three boxes. Click "Modify" when ready.
+      </h3>
+      <label for="modsubject">Subject</label><input type="text" id="modsubject" value="input subject here">
+      <label for="modday">Day</label><input type="text" id="modday" value="input day here">
+      <label for="moddaystudyhours">Hours</label><input type="text" id="moddaystudyhours" value="input anticipated study hours here">
+<br> 
+<label for="newsubject">New Subject</label><input type="text" id="newsubject" value="input new subject here">
+<label for="newday">New Day</label><input type="text" id="newday" value="input new day here">
+<label for="newdaystudyhours">New Hours</label><input type="text" id="newdaystudyhours" value="input new anticipated study hours here">
+      <button type = "button" id = "modifybutton">Modify</button> 
+     
+   
+    </form>
+   
+
+
+
+
+<h1 id ="username"></h1>
+
+<h2 id="message"></h2>
+
+    <div id = "dataDisplay" class = grid-container></div>
+   
+  </body>
+</html>
